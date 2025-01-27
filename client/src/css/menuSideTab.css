@@ -1,0 +1,58 @@
+.menusideContainer{
+  width: 80%;
+  height: 100vh;
+  background-color: white;
+  /* opacity: 0.5; */
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  z-index: 100;
+}
+
+
+.menusideContainer.menusideTabOpen{
+  transform: translateX(0);
+  
+}
+.menusideBackground{
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+  background-color: gray;
+  opacity: 0;
+}
+.menusideBackground.menusideTabBack{
+  opacity: 0.3;
+  display: block;
+}
+
+.subtitleContainer{
+  border-bottom: 1px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.subtitle{
+  /* border: 1px solid black; */
+}
+
+.topbarMenuCloseBtn {
+  /* border: 1px solid black; */
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  padding: 10px 5px;
+  font-size: 40px;
+}
