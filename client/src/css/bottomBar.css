@@ -1,0 +1,64 @@
+.containerbottom{
+  display: block;
+}
+
+.bottombarContainer {
+  border-bottom: 1px solid black;
+  width: 100vw; /* 100vw를 100%로 수정 */
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3);
+  position: relative;
+  background-color: white;
+}
+
+.bottombarMenuBtn {
+  font-size: 15px;
+  border-right: 1px solid black;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  transition: color 0.3s ease;
+  color: black;
+  text-decoration: none;
+}
+.bottombarMenuBtn:hover{
+  font-size: 110%;
+}
+.bottombarMenuBtn:nth-child(1){
+  font-size: 30px;
+}
+.bottombarMenuBtn.active{
+  color: #40ECFF;
+}
+
+.bottombarMenuBtn2:nth-child(4){
+  border:none;
+}
+.bottomBarLineContainer{
+  width: 100vw;
+  height: 3px;
+  display: flex;
+  /* background-color: blue; */
+}
+
+.bottombarLine{
+  position: absolute;
+  width: 25%;
+  height: 3px;
+  background-color: #40ECFF;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+
+
+
+
+
