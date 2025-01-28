@@ -1,0 +1,7 @@
+.backgroundSvgContainer{
+  /* border: 1px solid black; */
+  display: flex;
+  position: fixed;
+  z-index: -1;
+}
+

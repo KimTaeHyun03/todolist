@@ -3,6 +3,9 @@ import '../css/gap.css';
 import MenuSideTab from './menuSideTab.js';
 import { useState, useEffect } from 'react';
 import { CiMenuKebab } from 'react-icons/ci';
+import { BsCalendar2DayFill } from "react-icons/bs";
+import { FaListUl } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 let BottomBar = () => {
@@ -48,7 +51,7 @@ let BottomBar = () => {
           }}
           to='/'
         >
-          과제
+          <FaListUl />
         </Link>
         <Link
           className={`bottombarMenuBtn md-4 ${active === 2 ? 'active' : ''}`}
@@ -57,7 +60,7 @@ let BottomBar = () => {
           }}
           to='./calendar'
         >
-          캘린더
+          <BsCalendar2DayFill />
         </Link>
         <Link
           className={`bottombarMenuBtn md-4 ${active === 3 ? 'active' : ''}`}
@@ -66,7 +69,7 @@ let BottomBar = () => {
           }}
           to='/'
         >
-          내정보
+          <FaUser />
         </Link>
         <MenuSideTab isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       </div>

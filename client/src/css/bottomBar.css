@@ -9,15 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3);
   position: relative;
-  background-color: white;
+  background-color: #F0F9FF;
 }
 
 .bottombarMenuBtn {
-  font-size: 15px;
-  border-right: 1px solid black;
+  font-size: 22px;
+  /* border-right: 1px solid black; */
   height: 100%;
   text-align: center;
   justify-content: center;
@@ -28,18 +28,19 @@
   text-decoration: none;
 }
 .bottombarMenuBtn:hover{
-  font-size: 110%;
+  font-size: 25px;
 }
+/* 
 .bottombarMenuBtn:nth-child(1){
   font-size: 30px;
-}
+} */
 .bottombarMenuBtn.active{
   color: #40ECFF;
 }
 
-.bottombarMenuBtn2:nth-child(4){
+/* .bottombarMenuBtn2:nth-child(4){
   border:none;
-}
+} */
 .bottomBarLineContainer{
   width: 100vw;
   height: 3px;

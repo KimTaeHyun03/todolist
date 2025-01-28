@@ -1,0 +1,17 @@
+.floatingBtnContainer{
+  display: flex;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: #64C5FF;
+  bottom: 80px;
+  right: 20px;
+  border-radius: 50%;
+  box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.3);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+  
+}
