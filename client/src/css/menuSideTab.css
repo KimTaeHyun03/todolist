@@ -87,6 +87,12 @@
   margin-left: 10px;
 }
 
+.menusideTabList .innerinnerDiv span{
+  margin-left: 60px;
+  color: red;
+  
+}
+
 .menusideTabList .innerDiv .IoMdArrowDropdown {
   width: 30px;
   height: 30px;

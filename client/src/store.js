@@ -14,13 +14,29 @@ const activeSlice = createSlice({
   }
 });
 
+const categories = createSlice({
+  name: 'categories',
+  initialState: ['중요','덜중요','하든지 말든지'],
+  reducers: {
+    addCategories(state, action) {
+      return state.push(action.payload); // 상태를 새로운 값으로 설정
+    },
+    deleteCategories(state, action){
+      return state.filter( categories => categories !== action.payload)
+    }
+  }
+});
+
+
 // 액션 내보내기
 export const { setActive } = activeSlice.actions;
+export const { addCategories,deleteCategories } = categories.actions;
 
 // 스토어 설정
 const store = configureStore({
   reducer: {
     active: activeSlice.reducer,
+    categories: categories.reducer,
   },
 });
 

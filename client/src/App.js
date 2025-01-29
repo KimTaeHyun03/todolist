@@ -17,15 +17,18 @@ function App() {
 
   // 로그인 페이지에서는 바텀바를 숨기도록 조건부 렌더링
   const showBottomBar = location.pathname !== '/';
-
+const showImage = location.pathname !== "/"; // 루트('/')가 아닐 때만 이미지 표시
   return (
     <div className='App'>
-      <img src='/bgImg.png' alt='bg' className='appBackground'></img>
+      {showImage && <img src="/bgImg.png" alt="bg" className="appBackground" />}
       <Routes>
         <Route path='/' element={<Login/>} /> {/* 루트 경로에 로그인 컴포넌트 추가 */}
         <Route path='/main' element={<Main />} />
         <Route path='/calendar' element={<Calendar />} />
         <Route path='/info' element={<Info />} />
+        {/*
+        <Route path='/category/:categories' element={<Info />} />
+        */}
       </Routes>
       {showBottomBar && (
         <div className='appBottomNav'>

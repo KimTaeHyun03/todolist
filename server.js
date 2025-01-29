@@ -36,6 +36,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+
+
+
+
+
 //이 아래엔 api들어가면 안됨
 // React 정적 파일 제공
 app.use(express.static(path.join(__dirname, 'client/build')));

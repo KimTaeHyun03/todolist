@@ -8,10 +8,12 @@ import { useSelector,useDispatch } from 'react-redux';
 import { setActive } from './../store.js';
 import { FaPlus } from "react-icons/fa";
 
+import { addCategories,deleteCategories } from './../store.js';
 
 
 let Main =()=>{
-  let[categori,setCategori] = useState(['중요','덜중요','하든지 말든지','asdf','qwer','ddd','dddd','dddas']);
+  
+  let categories = useSelector((state) => state.categories ) ;
   
   let dispatch = useDispatch();
   
@@ -25,7 +27,7 @@ let Main =()=>{
   return(
     <>
     <div className='mainContainer'>
-      {categori.map((item, index) => 
+      {categories.map((item, index) => 
           <span>
             <div className='mainCircleContainer'>
               {item}
