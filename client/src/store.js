@@ -1,8 +1,26 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
+// sessionStorage에서 값 가져오기
+let activeValue = sessionStorage.getItem('activeValue');
+
+// createSlice로 슬라이스 정의
+const activeSlice = createSlice({
+  name: 'active',
+  initialState: activeValue ? parseInt(activeValue) : 1, // 기본값 1
+  reducers: {
+    setActive(state, action) {
+      return action.payload; // 상태를 새로운 값으로 설정
+    }
+  }
+});
+
+// 액션 내보내기
+export const { setActive } = activeSlice.actions;
+
+// 스토어 설정
 const store = configureStore({
   reducer: {
-    // Your reducers
+    active: activeSlice.reducer,
   },
 });
 

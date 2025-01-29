@@ -1,10 +1,10 @@
-import Calendar1 from 'react-calendar';
-import './../css/calendar.css';
+
+import './../css/info.css';
 import {useState,useEffect} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { setActive } from './../store.js';
 
-let Calendar = ()=>{
+let Info = ()=>{
   
   let dispatch = useDispatch();
   
@@ -12,16 +12,16 @@ let Calendar = ()=>{
   
   useEffect(() => {
     // 컴포넌트가 마운트될 때 실행
-    dispatch(setActive(2)); // 예시로 상태를 2로 설정
+    dispatch(setActive(3)); // 예시로 상태를 2로 설정
   }, []);
   return(
     <div>
-      <Calendar1/>
       
       
+      dhdjs
       
     </div>
     )
 }
 
-export default Calendar;
+export default Info;

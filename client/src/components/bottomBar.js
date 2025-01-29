@@ -7,23 +7,60 @@ import { BsCalendar2DayFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
+import { setActive } from './../store.js';
+
+
 
 let BottomBar = () => {
   //메뉴 상태 관리 스테이트
   let [isMenuOpen, setIsMenuOpen] = useState(false);
+  let dispatch = useDispatch();
+  
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => {
+      if (!prevState) {
+        // 메뉴가 열릴 때 히스토리 상태 추가
+        window.history.pushState({ menuOpen: true }, "");
+      }
+      return !prevState;
+    });
+  };
+
+  // 뒤로가기 시 메뉴 닫기 처리
+  useEffect(() => {
+    const handlePopState = (event) => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false); // 메뉴 닫기
+        
+        window.history.pushState(null, document.title, window.location.href);
+        
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    
+    // 페이지가 로드될 때 현재 URL을 pushState로 덮어씌워 뒤로가기 방지
+    window.history.pushState(null, document.title, window.location.href);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isMenuOpen]);
+
+  
+    
   //하단 네비게이션바 스테이트
-  let [active, setActive] = useState(() => {
-    // 세션 스토리지에서 초기값 가져오기
-    const savedActive = sessionStorage.getItem('active');
-    return savedActive ? parseInt(savedActive) : 1; // 기본값 1
-  });
+  
+  let active = useSelector((state) => state.active ) ;
+  
 
   //메뉴 상태 관리 함수
   let menuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   let chActive = value => {
-    setActive(value);
+    dispatch(setActive());
   };
 
   useEffect(() => {
@@ -47,16 +84,16 @@ let BottomBar = () => {
         <Link
           className={`bottombarMenuBtn md-4 ${active === 1 ? 'active' : ''}`}
           onClick={() => {
-            chActive(1);
+            dispatch(setActive(1));
           }}
-          to='/'
+          to='/main'
         >
           <FaListUl />
         </Link>
         <Link
           className={`bottombarMenuBtn md-4 ${active === 2 ? 'active' : ''}`}
           onClick={() => {
-            chActive(2);
+            dispatch(setActive(2));
           }}
           to='./calendar'
         >
@@ -65,9 +102,9 @@ let BottomBar = () => {
         <Link
           className={`bottombarMenuBtn md-4 ${active === 3 ? 'active' : ''}`}
           onClick={() => {
-            chActive(3);
+            dispatch(setActive(3));
           }}
-          to='/'
+          to='/info'
         >
           <FaUser />
         </Link>
