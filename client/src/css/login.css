@@ -68,3 +68,25 @@
   display: flex;
   justify-content: center;
 }
+
+.loginBtnContainer{
+  
+  padding: 30px;
+}
+
+.loginBtn{
+  display: inline-flex;
+  
+  /*
+  background-color: blue;
+  */
+  width: 70px;
+  height: 25px;
+  border-radius: 17.5px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
+}
+

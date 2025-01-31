@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3030;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let url = process.env.MONGO_URI;
-
+let idpw = JSON.parse(process.env.LOGINIDPW);
 // MongoDB 연결
 let db;
 new MongoClient(url)
@@ -37,8 +37,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-
+app.post('/api/login', (req,res)=>{
+    let sendIdPw = req.body;
+  if (
+    sendIdPw.sendId === idpw.loginId &&
+    sendIdPw.sendPw === idpw.loginPw
+    
+  ) {
+    res.status(200).json({ message: '로그인 성공' });
+  } else {
+    res.status(401).json({ message: '로그인 실패' });
+  }
+})
 
 
 
