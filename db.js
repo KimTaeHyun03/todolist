@@ -6,8 +6,10 @@ dotenv.config();
 const { Pool } = pkg;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: true }
+  connectionString: process.env.DATABASE_URL + "?sslmode=require", // 🔥 `sslmode=require` 추가
+  ssl: {
+    rejectUnauthorized: false // 🚨 SSL 인증서 문제 해결
+  }
 });
 
 export async function connectDB() {
@@ -17,7 +19,7 @@ export async function connectDB() {
     client.release();
   } catch (err) {
     console.error("❌ PostgreSQL 연결 실패:", err.message);
-    process.exit(1); // 연결 실패 시 프로세스 종료
+    process.exit(1);
   }
 }
 
