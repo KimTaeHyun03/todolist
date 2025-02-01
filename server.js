@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import axios from 'axios';
-import todoRoutes from './routes/login.js';
+import loginRoute from './routes/login.js';
+import signupRoute from './routes/signup.js';
 import pool, { connectDB } from './db.js';
 
 const app = express();
@@ -28,8 +29,9 @@ app.use((req, res, next) => {
 });
 
 // 로그인 API 라우트 연결
-console.log('라우트 연결 시작', todoRoutes);
-app.use('/api/login', todoRoutes);
+console.log('라우트 연결 시작', loginRoute);
+app.use('/api/login', loginRoute);
+app.use('/api/signup', signupRoute);
 console.log('라우트 연결 완료');
 
 // 데이터베이스 연결 후 서버 실행
@@ -40,7 +42,18 @@ async function startServer() {
   });
 }
 startServer();
-// ✅ 기존 React 정적 파일 제공 및 라우팅 코드 변경 없이 유지
+
+
+
+
+
+
+
+
+
+
+
+//이 아래에는 api삽입 하면 안됨
 app.use(
   express.static(path.join(__dirname, 'client/build'), {
     setHeaders: (res, path) => {

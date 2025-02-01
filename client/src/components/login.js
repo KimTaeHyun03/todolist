@@ -10,7 +10,7 @@ let Login = ()=>{
   let [showPw,setShowPw] = useState(false);
   let [loginId,setLoginId] = useState('');
   let [loginPw,setLoginPw] = useState('');
-  
+  let [modalState,setModalState] = useState(false);
   let loginClick= async ()=>{
     try{
       let response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`,
@@ -24,9 +24,30 @@ let Login = ()=>{
     }
   }
   
+  let modalOnOff = ()=>{
+    setModalState(!modalState);
+  }
+  
+  
+  
+  let signupClick = async ()=>{
+    try{
+      let response = await axios.post(`${process.env.REACT_APP_API_URL}/api/signup`,{
+        sendex:'ex'
+      });
+      
+      
+      
+    }catch(error){
+      
+    }
+  }
+  
+  
   return(
     <div className='loginContainer'>
       <div className='loginfilterContainer'/>
+      {modalState ? <SignupModal modalState={modalState} setModalState={setModalState} /> : ''}
      
 
      
@@ -80,11 +101,49 @@ let Login = ()=>{
           >
             로그인
           </span>
+          <span
+          className='loginBtn'
+          onClick={()=>{
+            signupClick();
+            modalOnOff();
+          }}
+          >
+            회원가입
+          </span>
+          
         </div>
         
       </div>
       
       </div>
+      
+    </div>
+    
+    )
+}
+let SignupModal = ({modalState,setModalState})=>{
+  return(
+    <div className='signupModal'
+    onClick={(e)=>{
+    if(e.target === e.currentTarget){
+      setModalState(!modalState);
+    }}}
+    >
+      <div className='signupModalIn'>
+        <h1 className='signupModalTitle'>회원가입</h1>
+        <input type='text'
+        className='signupModalInput'
+        />
+        <input type='text'
+        className='signupModalInput'
+        />
+        <input type='text'
+        className='signupModalInput'
+        />
+        
+      </div>
+      
+      
     </div>
     
     )
