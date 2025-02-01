@@ -3,13 +3,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log("🛠 DATABASE_URL:", process.env.DATABASE_URL); // ✅ 환경변수 값 확인
+
 const { Pool } = pkg;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + "?sslmode=require", // 🔥 `sslmode=require` 추가
-  ssl: {
-    rejectUnauthorized: false // 🚨 SSL 인증서 문제 해결
-  }
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 export async function connectDB() {
