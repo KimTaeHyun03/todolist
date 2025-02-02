@@ -35,6 +35,7 @@ app.use('/api/signup', signupRoute);
 console.log('라우트 연결 완료');
 
 // 데이터베이스 연결 후 서버 실행
+//supabase 사용중
 async function startServer() {
   await connectDB(); // PostgreSQL 연결 확인
   app.listen(PORT, () => {
