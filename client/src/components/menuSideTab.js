@@ -1,5 +1,6 @@
 import '../css/menuSideTab.css';
 import BackgroundSvg from './backgroundSvg.js';
+import CategoryModal from './categoryModal.js';
 import { useState } from 'react';
 import { GoX } from 'react-icons/go';
 import { BiSolidCategory } from 'react-icons/bi';
@@ -32,6 +33,7 @@ let MenuSideTab = ({ setIsMenuOpen, isMenuOpen }) => {
   
   let categories = useSelector((state) => state.categories ) ;
 
+  let [categoryAdd,setCategoryAdd] = useState(false);
   return (
     <>
       <div
@@ -56,8 +58,20 @@ let MenuSideTab = ({ setIsMenuOpen, isMenuOpen }) => {
             </div>
           </div>
           {dropdown ? (
+          <>
+            <div className='menusideTabList'
+            onClick={()=>{
+            setCategoryAdd(!categoryAdd);
+            setIsMenuOpen(!isMenuOpen);
+          }}
+            >
+              <div className='innerinnerDiv'>
+          <span >카테고리 추가</span>
+          </div>
+          </div>
+          {
                   categories.map((item, index) => 
-          <span>
+          <span key={index}>
             <div className='menusideTabList'>
               <div className='innerinnerDiv'>
                 <span>{item}</span>
@@ -65,8 +79,8 @@ let MenuSideTab = ({ setIsMenuOpen, isMenuOpen }) => {
               
             </div>
           </span>
-      )
-          ) : null}
+      )}
+          </>) : null}
           <div className='menusideTabList'>
             <div className='innerDiv'>
               <IoIosSettings />
@@ -84,7 +98,9 @@ let MenuSideTab = ({ setIsMenuOpen, isMenuOpen }) => {
           setIsMenuOpen(!isMenuOpen);
         }}
       ></div>
+      {categoryAdd ? <CategoryModal/> : null}
     </>
   );
 };
+
 export default MenuSideTab;

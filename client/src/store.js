@@ -1,9 +1,10 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import supabase from './supabaseClient.js';
 
-// sessionStorage에서 값 가져오기
+// ✅ 현재 활성 상태 관리 (sessionStorage 사용)
 let activeValue = sessionStorage.getItem('activeValue');
 
-// createSlice로 슬라이스 정의
 const activeSlice = createSlice({
   name: 'active',
   initialState: activeValue ? parseInt(activeValue) : 1, // 기본값 1
@@ -14,30 +15,49 @@ const activeSlice = createSlice({
   }
 });
 
-const categories = createSlice({
+// ✅ 카테고리 추가 비동기 액션 (Supabase에 저장 후 Redux 반영)
+export const addCategoryToServer = createAsyncThunk(
+  'categories/addCategoryToServer',
+  async ({ categoryName, userId }, { dispatch }) => {
+    try {
+      const response = await axios.post('http://localhost:3030/api/category', {
+        categoryName,
+        userId
+      });
+
+      if (response.status === 201) {
+        dispatch(addCategories(categoryName)); // Redux에 추가
+      }
+    } catch (error) {
+      console.error("카테고리 추가 실패:", error);
+    }
+  }
+);
+
+// ✅ 카테고리 목록 관리 (Redux + Supabase 연동)
+const categoriesSlice = createSlice({
   name: 'categories',
-  initialState: ['중요','덜중요','하든지 말든지'],
+  initialState: ['중요', '덜중요', '하든지 말든지'],
   reducers: {
     addCategories(state, action) {
-      return state.push(action.payload); // 상태를 새로운 값으로 설정
+      state.push(action.payload); // 새로운 카테고리를 Redux에 추가
     },
-    deleteCategories(state, action){
-      return state.filter( categories => categories !== action.payload)
+    deleteCategories(state, action) {
+      return state.filter(category => category !== action.payload); // Redux에서 카테고리 삭제
     }
   }
 });
 
-
-// 액션 내보내기
+// ✅ 액션 내보내기
 export const { setActive } = activeSlice.actions;
-export const { addCategories,deleteCategories } = categories.actions;
+export const { addCategories, deleteCategories } = categoriesSlice.actions;
 
-// 스토어 설정
+// ✅ Redux 스토어 설정
 const store = configureStore({
   reducer: {
     active: activeSlice.reducer,
-    categories: categories.reducer,
-  },
+    categories: categoriesSlice.reducer,
+  }
 });
 
-export default store; // 기본 내보내기
+export default store;

@@ -4,7 +4,7 @@ import supabase from './../supabaseClient.js'; // Supabase 클라이언트 임�
 import { FaUserCircle } from "react-icons/fa";
 import { useSelector,useDispatch } from 'react-redux';
 import { setActive } from './../store.js';
-
+import CategoryList from './showCategory.js';
 
 
 const Info = () => {
@@ -13,7 +13,19 @@ const Info = () => {
   // email: data.email,
   // nickname: data.nickname,
   // full_name: fullName
+  const handleLogout = async () => {
+    await supabase.auth.signOut(); // 강제 로그아웃
+    localStorage.removeItem("supabase.auth.token");
+    sessionStorage.removeItem("supabase.auth.token");
 
+    console.log("✅ 로그아웃 완료");
+    alert("로그아웃 되었습니다.");
+
+    // 로그아웃 시 상태 업데이트 
+    // 후에 경로를 환경변수로 바꿔야됨 
+    window.location.replace('http://localhost:3000');
+    
+  };
   useEffect(() => {
     const fetchUserData = async () => {
       // ✅ 1. 현재 로그인한 사용자의 UUID 가져오기 (auth.users)
@@ -55,15 +67,18 @@ dispatch(setActive(3));
       <div className='topContainer'>
       <FaUserCircle className='infoUserIcon'/>
       <span>{userData.full_name}</span>
-      
+      <button onClick={handleLogout}
+      className='infoLogoutBtn'
+      >로그아웃</button>
       
       </div>
-      
-      
-      <div className='infoTitle'>
+      <div className='infoBottomContainer'>
+        
+        
         
         
       </div>
+
     </div>
   );
 };

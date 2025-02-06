@@ -1,0 +1,59 @@
+.categoryModalContainer{
+  display: flex;
+  position: fixed;
+  top: 15%;
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  border: 1px solid black;
+  background-color: #EBE8E7;
+  border-radius: 10px;
+  flex-direction: column;
+}
+.categoryModalTitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  height: 20%;
+  text-align: center;
+  width: 100%;
+  
+}
+.categoryModalMainContainer{
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  
+  
+  
+  
+}
+.categoryModalInput{
+  width: 60%;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30%;
+  border-radius: 10px;
+  border: 1px solid black;
+  
+  
+  
+  
+}
+
+
+
+.categoryModalAddBtn{
+  margin-top: 30px;
+  /* border: 1px solid black; */
+  padding: 10px 10px;
+  border-radius: 10px;
+  background-color: skyblue;
+  
+}
